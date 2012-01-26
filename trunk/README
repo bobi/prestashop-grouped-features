@@ -1,0 +1,50 @@
+Prestashop version 1.4
+
+**WARNING**
+During installation module change core files of prestashop installation. 
+All actions described in **INSTALL** section and will rollback after uninstalling module
+
+***INSTALL***
+1) Copy exfeatures folder content in modules/ directory
+
+2) Go to Prestashop Admin Panel -> Modules -> Front Office Features -> exfeatures -> install
+
+3) During to install walk throught next steps:
+	* Creating table _DB_PREFIX_feature_group
+	* Creating table _DB_PREFIX_feature_group_lang
+	* Adding field 'id_group' to table _DB_PREFIX_feature
+	* Adding table 'position' to table _DB_PREFIX_feature
+	* Updating _DB_PREFIX_.tab table - class of tab 'Features' change from AdminFeatures to AdminExFetures from exfetures module
+	* Update _DB_PREFIX_.tab table - class of tab Catalog change from AdminCatalog to AdminCatalogExFeatures from exfetures module.
+		Tabs replacement is one the same, you can do in Employees -> Tabs.
+		Intall script of this module do this automatically for you
+	* Patch core file <adminFolder>/tabs/AdminCatalog.php
+		Do not very worry about this - everything what have been changed is visible of $adminProduct property of AdminCatalog class from private to protected.
+		Tests was show, that such replacement not damage system.
+	* Copy ajax_ex_features.php to <admin> folder
+	* Copy Product.php to /override/classes/_Product.php
+	* Patch default (prestashop) theme for display grouped products. 
+		File, which should be patched: themes/prestashop/product.tpl. 
+		Please, make backups of this files before installing module.
+	* Create default group. 
+		After installation module, you can see only features, which belong to one of existing groups.
+		That's why during installation was created one group with name 'Common' and all features, which exists in system moved in this group
+	Everything this you can see into exfetures.php file in install function
+	Please click 'configure' to check whether or not module install properly
+
+Architecture notices
+
+During installation module, we copy file Product.php to override/classes/ folder. This script contain class Product, which extends ProductCore class from classes/Product.php
+In class Product has overrided method getFetatures, which return features grouped in groups. 
+
+During installation patche file theme/prestashop/product.tpl, 
+replace piece of code, which display features on piece of code, 
+which take into consideration groups in $features array.
+
+Functional for working with features contains in file AdminFeatures class.
+Module contain class AdminExFeatures for adding functional for working with groups too. 
+Methods of this class calls because this class become class of tab 'Features' (see exfeatures::install())
+
+Because I want display groups of features in product editing form I also extend AdminCatalog class by AdminCatalogExFeatures class
+In this class overrides constructor, where property $adminProducts set in instance of AdminProductsExFetures class.
+This class extends AdminProducts class, overrides displayFormFeatures method for displaying features by groups, using two-levels tree/
