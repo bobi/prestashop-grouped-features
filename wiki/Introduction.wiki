@@ -1,8 +1,11 @@
 This work with  version 1.4 of prestashop.
 ==Introduction==
 This module adding functionality for grouped products featutes. In the base version here Catalog->Fetures, you can see ungrouped list of features.
+
 With this module you can create groups for this features and set positions for groups and features. (see screenshot 1)
+
 After successfull installing of module, on Catalog->Features page you will see list of groups, instead of list of features.
+
 After click on group name in the table, you will go to list of features in this group.
 Now, besides of name of feature, you also must set group, where feature belong and position of feature on this group (see screenshot 2)
 After greating of necessary number of groups and fill it by fetures, you can go to form of product editing, Fetures tab.
