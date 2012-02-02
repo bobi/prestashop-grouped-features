@@ -19,4 +19,4 @@ After filling feature by values on product form, you can go to default prestasho
 
 You can see two-level tree there, where top level is groups and second lower level is feature name:value pairs (screenshot 4)
 
-<img src="https://lh6.googleusercontent.com/-aCZVXo-pg30/TysIGiGw7xI/AAAAAAAAAcQ/oz1qu376Xts/s640/1.jpg" />
+<a href="https://picasaweb.google.com/107561425355283524560/Exfeatures#5704662261322280722"><img src="https://lh6.googleusercontent.com/-aCZVXo-pg30/TysIGiGw7xI/AAAAAAAAAcQ/oz1qu376Xts/s640/1.jpg" /></a>
