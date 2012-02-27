@@ -110,9 +110,7 @@
 		{if $ordered_features}
         {* Added by module for grouped features *}
 		{foreach from=$ordered_features item=group}
-			{if $ordered_features|@count > 1}
             	<tr><td colspan="{$products|@count+1}"> {$group.name}</td></tr>
-            {/if}
             {foreach from=$group.features item=feature}
             	<tr>
             		{cycle values='comparison_feature_odd,comparison_feature_even' assign='classname'}

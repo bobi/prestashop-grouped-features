@@ -36,7 +36,7 @@
             LEFT JOIN '._DB_PREFIX_.'feature_group_lang fgl ON (fg.id_group=fgl.id_group AND fgl.id_lang = '.(int)$id_lang.')
 			LEFT JOIN '._DB_PREFIX_.'feature_lang fl ON (fl.id_feature = pf.id_feature AND fl.id_lang = '.(int)$id_lang.')
 			LEFT JOIN '._DB_PREFIX_.'feature_value_lang fvl ON (fvl.id_feature_value = pf.id_feature_value AND fvl.id_lang = '.(int)$id_lang.')
-			WHERE pf.id_product = '.intval($this->id);
+			WHERE pf.id_product = '.intval($this->id));
 		}
         
         $result = array();
