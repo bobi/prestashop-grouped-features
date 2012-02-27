@@ -288,7 +288,7 @@ foreach ($this->_list AS $tr):
     <img src="../img/admin/arrow2.gif" /> <?php echo $this->l('Back to groups list', __CLASS__); ?>
 </a>
 <br />
-<?
+<?php
 	}
     
     /**
