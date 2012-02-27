@@ -110,7 +110,9 @@
 		{if $ordered_features}
         {* Added by module for grouped features *}
 		{foreach from=$ordered_features item=group}
-            <tr><td colspan="{$products|@count+1}">{$group.name}</td></tr>
+			{if $ordered_features|@count > 1}
+            	<tr><td colspan="{$products|@count+1}"> {$group.name}</td></tr>
+            {/if}
             {foreach from=$group.features item=feature}
             	<tr>
             		{cycle values='comparison_feature_odd,comparison_feature_even' assign='classname'}
@@ -121,8 +123,11 @@
             			{foreach from=$products item=product name=for_products}
             				{assign var='product_id' value=$product->id}
             				{assign var='feature_id' value=$feature.id_feature}
-            				{assign var='tab' value=$product_features[$product_id]}
-            				<td  width="{$width}%" class="{$classname} comparison_infos">{$tab[$feature_id]|escape:'htmlall':'UTF-8'}</td>
+            				{if isset($product_features[$product_id])}
+            					{assign var='tab' value=$product_features[$product_id]}
+            				{/if}
+            				<td  width="{$width}%" class="{$classname} comparison_infos">
+            				{if isset($tab[$feature_id])}{$tab[$feature_id]|escape:'htmlall':'UTF-8'}{/if}</td>
             			{/foreach} 
             	</tr>
              {/foreach}  {* feature loop *}
