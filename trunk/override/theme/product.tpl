@@ -419,7 +419,12 @@ var fieldRequired = '{l s='Please fill in all required fields' js=1}';
 		<!-- full description -->
 		<div id="idTab1" class="rte">{$product->description}</div>
 	{/if}
-	{if $features}				{* Added by module for grouped features *}		<!-- product's features -->		<ul id="idTab2" class="bullet">		{* Hello from exfeatures !!! *}		{foreach from=$features item=group}            <li>            <span>{$group.name}</span><br />                <ul>                {foreach from=$group.features item=feature}     	           <li><span>{$feature.name|escape:'htmlall':'UTF-8'}</span> {$feature.value|escape:'htmlall':'UTF-8'}</li>                {/foreach}                </ul>            </li>		{/foreach}		</ul>		{* End added by module for grouped features *}	{/if}
+	{if $features}				{* Added by module for grouped features *}		<!-- product's features -->		<ul id="idTab2" class="bullet">		{* Hello from exfeatures !!! *}		{foreach from=$features item=group}
+			{if $features|@count > 1}
+            <li>            <span>{$group.name}</span><br />                <ul>
+                {/if}                {foreach from=$group.features item=feature}     	           <li><span>{$feature.name|escape:'htmlall':'UTF-8'}</span> {$feature.value|escape:'htmlall':'UTF-8'}</li>                {/foreach}
+                {if $features|@count > 0}                </ul>            </li>
+            {/if}		{/foreach}		</ul>		{* End added by module for grouped features *}	{/if}
 	{if $attachments}
 		<ul id="idTab9" class="bullet">
 		{foreach from=$attachments item=attachment}
