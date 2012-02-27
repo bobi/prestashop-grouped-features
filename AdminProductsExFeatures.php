@@ -70,8 +70,8 @@ class AdminProductsExFeatures extends AdminProducts
 				</tr>
 			</table>
 			<hr style="width:730px;" />
-            <a href="#" id="collapse_all_link"><?php echo $this->l('Collapse all'); ?></a> 
-            <a id="expand_all_link" href="#"><?php echo $this->l('Expand all'); ?></a><br /> 
+            <a href="#" id="all_close" class="module_toggle_all"><?php echo $this->l('Collapse all'); ?></a> 
+            <a id="all_open" class="module_toggle_all" href="#"><?php echo $this->l('Expand all'); ?></a><br /> 
 			
             <?php // Header 
 			$nb_feature = Feature::nbFeatures(intval($cookie->id_lang));
