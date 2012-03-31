@@ -9,6 +9,13 @@ require_once PS_ADMIN_DIR.'/tabs/AdminProducts.php';
 
 class AdminProductsExFeatures extends AdminProducts 
 {
+    public function __construct()
+    {
+		global $cookie;
+		parent::__construct();
+		$this->token = Tools::getAdminToken("AdminCatalogExFeatures".(int)$this->id.(int)$cookie->id_employee);
+	}
+	
     public function isAllCustom($values)
     {
         if (!is_array($values))
