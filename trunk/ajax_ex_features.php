@@ -16,10 +16,11 @@ if ($step = (int)($_POST['ajaxProductTab'])) {
         
         $languages = Language::getLanguages(false);
         $defaultLanguage = (int)(Configuration::get('PS_LANG_DEFAULT'));
+        $lang = $cookie->id_lang ? $cookie->id_lang : $defaultLanguage;
         $product = new Product((int)(Tools::getValue('id_product')));
         if (!Validate::isLoadedObject($product))
         	die (Tools::displayError('Product cannot be loaded'));
-       	$admin->displayFormFeatures($product, $languages, $defaultLanguage);
+       	$admin->displayFormFeatures($product, $languages, $lang);
         exit();
     }
 } 
