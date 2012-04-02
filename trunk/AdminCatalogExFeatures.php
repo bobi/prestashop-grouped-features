@@ -20,6 +20,17 @@ class AdminCatalogExFeatures extends AdminCatalog
         $this->token = Tools::getAdminToken("AdminCatalogExFeatures".(int)$this->id.(int)$cookie->id_employee);
     }
     
+    public function checkToken()
+    {
+		global $cookie;
+		if ($parentCheck = parent::checkToken()) {
+			return $parentCheck;
+		} else {
+			$token = Tools::getValue('token');
+			return (!empty($token) AND $token === Tools::getAdminToken('AdminCatalog'.(int)(Tab::getIdFromClassName('AdminCatalog')).(int)($cookie->id_employee)));
+		}
+	}
+    
     protected function l($string, $class = 'AdminTab', $addslashes = FALSE, $htmlentities = TRUE)
     {
         if ($class != __CLASS__) {
