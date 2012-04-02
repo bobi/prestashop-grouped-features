@@ -422,6 +422,9 @@ class exfeatures extends Module
     {
         global $tab;
         $tab = Tab::exfeaturesMap($tab);
+        AdminTab::$tabParenting["AdminProducts"] = 'AdminCatalogExFeatures';
+        AdminTab::$tabParenting["AdminCategories"] = 'AdminCatalogExFeatures';
+        AdminTab::$tabParenting["AdminFeaturesValues"] = 'AdminExFeatures';
         return '';
     }
 }
