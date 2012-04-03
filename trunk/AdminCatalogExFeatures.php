@@ -15,8 +15,8 @@ class AdminCatalogExFeatures extends AdminCatalog
     {
         global $cookie;
         parent::__construct();
-        $this->adminProducts = new AdminProductsExFeatures();
-        $this->adminCategories = new AdminCategoriesExFeatures();
+        $this->adminProducts = new AdminProductsExFeatures($this);
+        $this->adminCategories = new AdminCategoriesExFeatures($this);
         $this->token = Tools::getAdminToken("AdminCatalogExFeatures".(int)$this->id.(int)$cookie->id_employee);
     }
     
@@ -30,14 +30,25 @@ class AdminCatalogExFeatures extends AdminCatalog
 			return (!empty($token) AND $token === Tools::getAdminToken('AdminCatalog'.(int)(Tab::getIdFromClassName('AdminCatalog')).(int)($cookie->id_employee)));
 		}
 	}
+	
+	public function exf_l($string, $class = 'AdminTab', $addslashes = FALSE, $htmlentities = TRUE)
+	{
+		return $this->l($string, $class, $addslashes, $htmlentities);
+	}
     
     protected function l($string, $class = 'AdminTab', $addslashes = FALSE, $htmlentities = TRUE)
     {
         if ($class != __CLASS__) {
-            $parentTranslation = parent::l($string, 'AdminCatalog', $addslashes, $htmlentities, false);
-            if ($string != $parentTranslation)
+            $parentTranslation = parent::l($string, 'AdminCatalog', $addslashes, $htmlentities);
+            if ($string != $parentTranslation) {
                 return $parentTranslation;
-            return parent::l($string, $class, $addslashes, $htmlentities);     
+			}
+			global $_LANGADM;
+			$class = "AdminCatalog";
+			$key = md5(str_replace('\'', '\\\'', $string));
+			$str = ((key_exists($class.$key, $_LANGADM)) ? $_LANGADM[$class.$key] : $string);
+			$str = $htmlentities ? htmlentities($str, ENT_QUOTES, 'utf-8') : $str;
+			return str_replace('"', '&quot;', ($addslashes ? addslashes($str) : stripslashes($str)));
         } 
         return exfeatures::getInstance()->l($string, strtolower($class));
     }
