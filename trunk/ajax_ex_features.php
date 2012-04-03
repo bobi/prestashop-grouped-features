@@ -8,11 +8,14 @@ if ($step = (int)($_POST['ajaxProductTab'])) {
         /* Getting cookie or logout */
         require_once(PS_ADMIN_DIR.'/init.php');
         
-       	require_once(dirname(__FILE__).'/tabs/AdminCatalog.php');
-       	$catalog = new AdminCatalog();
+       	//require_once(dirname(__FILE__).'/tabs/AdminCatalog.php');
+       	//$catalog = new AdminCatalog();
+       	
+       	require_once(_PS_ROOT_DIR_.'/modules/exfeatures/AdminCatalogExFeatures.php');
+       	$catalog = new AdminCatalogExFeatures();
             
         require_once(_PS_ROOT_DIR_.'/modules/exfeatures/AdminProductsExFeatures.php');
-        $admin = new AdminProductsExFeatures();
+        $admin = new AdminProductsExFeatures($catalog);
         
         $languages = Language::getLanguages(false);
         $defaultLanguage = (int)(Configuration::get('PS_LANG_DEFAULT'));
