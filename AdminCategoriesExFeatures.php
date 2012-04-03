@@ -11,7 +11,7 @@ class AdminCategoriesExFeatures extends AdminCategories
 {
     private $_adminCatalogInstance;
     
-    public function __construct($catalogInstance)
+    public function __construct($catalogInstance=null)
     {
 		$this->_adminCatalogInstance = $catalogInstance;
 		global $cookie;
@@ -21,6 +21,9 @@ class AdminCategoriesExFeatures extends AdminCategories
 	
 	protected function l($string, $class = 'AdminTab', $addslashes = FALSE, $htmlentities = TRUE)
 	{
-		return $this->_adminCatalogInstance->exf_l($string, $class, $addslashes, $htmlentities);
+		if ($this->_adminCatalogInstance) {
+			return $this->_adminCatalogInstance->exf_l($string, "AdminCategories", $addslashes, $htmlentities);
+		}
+		return parent::l($string, $class, $addslashes, $htmlentities);
 	}
 }

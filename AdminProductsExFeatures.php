@@ -11,7 +11,7 @@ class AdminProductsExFeatures extends AdminProducts
 {
     private $_adminCatalogInstance;
     
-    public function __construct($catalogInstance)
+    public function __construct($catalogInstance=null)
     {
 		global $cookie;
 		$this->_adminCatalogInstance = $catalogInstance;
@@ -301,7 +301,10 @@ class AdminProductsExFeatures extends AdminProducts
     
     protected function l($string, $class = 'AdminTab', $addslashes = FALSE, $htmlentities = TRUE)
 	{
-		return $this->_adminCatalogInstance->exf_l($string, $class, $addslashes, $htmlentities);
+		if ($this->_adminCatalogInstance) {
+			return $this->_adminCatalogInstance->exf_l($string, "AdminProducts", $addslashes, $htmlentities);
+		}
+		return parent::l($string, $class, $addslashes, $htmlentities);
 	}
 } 
     
