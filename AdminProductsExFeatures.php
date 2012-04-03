@@ -9,9 +9,12 @@ require_once PS_ADMIN_DIR.'/tabs/AdminProducts.php';
 
 class AdminProductsExFeatures extends AdminProducts 
 {
-    public function __construct()
+    private $_adminCatalogInstance;
+    
+    public function __construct($catalogInstance)
     {
 		global $cookie;
+		$this->_adminCatalogInstance = $catalogInstance;
 		parent::__construct();
 		$this->token = Tools::getAdminToken("AdminCatalogExFeatures".(int)$this->id.(int)$cookie->id_employee);
 	}
@@ -295,6 +298,11 @@ class AdminProductsExFeatures extends AdminProducts
         parent::displayList($id_lang);
         $currentIndex = $tmp_currentIndex;
     }
+    
+    protected function l($string, $class = 'AdminTab', $addslashes = FALSE, $htmlentities = TRUE)
+	{
+		return $this->_adminCatalogInstance->exf_l($string, $class, $addslashes, $htmlentities);
+	}
 } 
     
 ?>
