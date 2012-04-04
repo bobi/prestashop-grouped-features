@@ -24,7 +24,7 @@ class exfeatures extends Module
     {
 	$this->name = 'exfeatures';
         $this->tab = 'front_office_features';
-	$this->version = '1.2.5';
+	$this->version = '1.3.0';
         $this->author = "Gon";
         
 	parent::__construct();
