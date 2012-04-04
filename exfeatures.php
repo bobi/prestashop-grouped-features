@@ -22,15 +22,15 @@ class exfeatures extends Module
     
     public function __construct()
     {
-		$this->name = 'exfeatures';
+	$this->name = 'exfeatures';
         $this->tab = 'front_office_features';
-		$this->version = '1.1';
+	$this->version = '1.2.5';
         $this->author = "Gon";
         
-		parent::__construct();
+	parent::__construct();
         
-		$this->displayName = $this->l('Extensible Grouped Features');
-		$this->description = $this->l('Adding groups for your features');
+	$this->displayName = $this->l('Extensible Grouped Features');
+	$this->description = $this->l('Adding groups for your features');
         $this->_overriddenClasses = array('Product.php', 'Tab.php', 'Tools.php', 'Feature.php');
         $this->_overridenTemplates = array('product.tpl', 'products-comparison.tpl');
         if (!$this->checkInstallationCorrection())
