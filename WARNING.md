@@ -1,0 +1,1 @@
+During installation module change core files of prestashop installation. All actions described in INSTALL section and will rollback after uninstalling module
